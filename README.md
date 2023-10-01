@@ -1,6 +1,9 @@
 ## Over the Wire: Wargames Solution Walkthrough
 
-reminders:
+##### reminders:
+- this walktrough will use the ssh command to connect to the server, so you need to install ssh in your machine
+- for windows users, you can use git bash to use the ssh command
+- for linux users, you can use the terminal to use the ssh command
 - for exiting an ssh connection, you can type exit and press enter 
 
 ### level 0
@@ -136,11 +139,67 @@ bandit6@bandit.labs.overthewire.org's password: P4L4vucdmLnm8I7Vl7jG1ApGSfjYKqJU
 
 ### level 6 -> level 7
 ```bash
+# study about the the command find and grep together with its parameters
+
 #The password for the next level is stored somewhere on the server and has all of the following properties:
 
     owned by user bandit7
     owned by group bandit6
     33 bytes in size
+
+# find all files in the root directory that are owned by user bandit7 and filter that using grep to find the password
+bandit6@bandit:/$ find / -user bandit7 2>&1 | grep "password"
+/var/lib/dpkg/info/bandit7.password
+bandit6@bandit:/$ cat /var/lib/dpkg/info/bandit7.password
+z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S # bandit 7 password
+
+# connect to bandit7
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+
+# type the password of the ssh connection
+bandit7@bandit.labs.overthewire.org's password: z7WtoNQU2XfjmMtWA8u5rN4vzqu4v99S
+```
+
+### level 7 -> level 8
+```bash
+# The password for the next level is stored in the file data.txt next to the word millionth
+bandit7@bandit:~$ less data.txt
+# type /millionth to search for the word millionth
+millionth       TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+
+# connect to bandit8
+ssh bandit8@bandit.labs.overthewire.org -p 2220
+
+# type the password of the ssh connection
+bandit8@bandit.labs.overthewire.org's password: TESKZC0XvTetK0S9xNwm25STk5iWrBvP
+```
+
+### level 8 -> level 9
+```bash
+# study the command sort and uniq
+# The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+
+# sort the data.txt file and filter it using uniq -u to show only the unique lines
+# uniq command is used to filter out repeated lines from a sorted file
+bandit8@bandit:~$ cat data.txt | sort | uniq -u
+EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+
+bandit8@bandit:~$ cat data.txt | sort | uniq -u
+EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+
+# connect to bandit9
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+
+# type the password of the ssh connection
+bandit9@bandit.labs.overthewire.org's password: EN632PlfYiZbn3PhVK3XOGSlNInNE00t
+```
+
+### level 9 -> level 10
+```bash
+
+# The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+
+
 
 
 ```
