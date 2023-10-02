@@ -196,10 +196,43 @@ bandit9@bandit.labs.overthewire.org's password: EN632PlfYiZbn3PhVK3XOGSlNInNE00t
 
 ### level 9 -> level 10
 ```bash
-
+# study strings and grep
 # The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
 
+bandit9@bandit:~$ strings data.txt | grep ===
+4========== the#
+========== password
+========== is
+========== G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
 
+# connect to bandit10
+ssh bandit10@bandit.labs.overthewire.org -p 2220
 
+# type the password of the ssh connection
+bandit10@bandit.labs.overthewire.org's password: G7w8LIi6J3kTb8A7j9LgrywtEUlyyp6s
+```
+
+#### level 10 -> level 11
+```bash
+#The password for the next level is stored in the file data.txt, which contains base64 encoded data
+
+bandit10@bandit:~$ base64 --decode data.txt 
+The password is 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+
+# connect to bandit11
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+
+# type the password of the ssh connection
+bandit11@bandit.labs.overthewire.org's password: 6zPeziLdR2RKNdNYFNb6nVCKzphlXHBM
+```
+
+### level 11 -> level 12
+```bash
 
 ```
+
+
+
+
+
+
