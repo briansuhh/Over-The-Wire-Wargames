@@ -228,6 +228,8 @@ bandit11@bandit.labs.overthewire.org's password: 6zPeziLdR2RKNdNYFNb6nVCKzphlXHB
 
 ### level 11 -> level 12
 ```bash
+# The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
 
 ```
 
